@@ -69,6 +69,37 @@ $('#register-btn').click(function (e) {
 
 
 
+  /*============================
+  Login ajax request
+  ==============================*/
+$('#login-btn').click(function (e) {
+  if($('#login-form')[0].checkValidity(e) ){ 
+    e.preventDefault();
+
+    $('#login-btn').val('Please wait...');
+  
+    $.ajax({
+      type: "post",
+      url: "php/action.php",
+      data: $('#login-form').serialize()+"&action=login",
+      success: function (response) {
+        $('#login-btn').val('Sign In');
+        // console.log(response);
+        if(response == 'loggedin'){
+          window.location = "home.php";
+        }else{
+          $('#loginAlert').html(response);
+        }
+  
+      }
+    });
+  }
+
+
+});
+
+
+
 
 
 

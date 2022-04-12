@@ -24,4 +24,25 @@ class Auth extends Database{
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result;
     }
+
+    //Login User
+
+    public function login($email){
+        $sql = "SELECT * FROM users WHERE email = :email and deleted != 0";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute(['email' => $email]);
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $row;
+
+    }
+
+    //Current User
+
+    public function current_user($email){
+        $sql = "SELECT * FROM users WHERE email = :email and deleted != 0";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute(['email' => $email]);
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $row;
+    }
 }
