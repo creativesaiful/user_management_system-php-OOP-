@@ -32,39 +32,39 @@ Registration, login, forget password,  form toggle
   Registration form validation and ajax request
   ==============================*/
 
-$('#register-btn').click(function (e) {
-  if($('#register-form')[0].checkValidity(e) ){
-    e.preventDefault();
-    $('#register-btn').val('Please wait...');
+  $('#register-btn').click(function (e) {
+    if ($('#register-form')[0].checkValidity(e)) {
+      e.preventDefault();
+      $('#register-btn').val('Please wait...');
 
-    if($('#rpassword').val() != $('#cpassword').val()){
-      $('#register-btn').val('Register');
-      $('#rpassword').css('border-color', 'red');
-      $('#cpassword').css('border-color', 'red');
-      $('#passError').text('Password does not match');
-      alert ('Password does not match');
-    }else{
-      $('#passError').text('');
+      if ($('#rpassword').val() != $('#cpassword').val()) {
+        $('#register-btn').val('Register');
+        $('#rpassword').css('border-color', 'red');
+        $('#cpassword').css('border-color', 'red');
+        $('#passError').text('Password does not match');
+        alert('Password does not match');
+      } else {
+        $('#passError').text('');
 
-      $.ajax({
-        type: "post",
-        url: "php/action.php",
-        data: $('#register-form').serialize()+"&action=register",
+        $.ajax({
+          type: "post",
+          url: "assets/php/action.php",
+          data: $('#register-form').serialize() + "&action=register",
 
-        success: function (response) {
-          $('#register-btn').val('Register');
-          if(response == 'registered'){
-            window.location = "home.php";
-          }else{
-       
-           $('#regAlert').html(response);
+          success: function (response) {
+            $('#register-btn').val('Register');
+            if (response == 'registered') {
+              window.location = "home.php";
+            } else {
+
+              $('#regAlert').html(response);
+            }
           }
-        }
-      });
-    }
+        });
+      }
 
-  }
-});
+    }
+  });
 
 
 
@@ -72,32 +72,61 @@ $('#register-btn').click(function (e) {
   /*============================
   Login ajax request
   ==============================*/
-$('#login-btn').click(function (e) {
-  if($('#login-form')[0].checkValidity(e) ){ 
-    e.preventDefault();
+  $('#login-btn').click(function (e) {
+    if ($('#login-form')[0].checkValidity(e)) {
+      e.preventDefault();
 
-    $('#login-btn').val('Please wait...');
-  
-    $.ajax({
-      type: "post",
-      url: "php/action.php",
-      data: $('#login-form').serialize()+"&action=login",
-      success: function (response) {
-        $('#login-btn').val('Sign In');
-        // console.log(response);
-        if(response == 'loggedin'){
-          window.location = "home.php";
-        }else{
-          $('#loginAlert').html(response);
+      $('#login-btn').val('Please wait...');
+
+      $.ajax({
+        type: "post",
+        url: "assets/php/action.php",
+        data: $('#login-form').serialize() + "&action=login",
+        success: function (response) {
+          $('#login-btn').val('Sign In');
+          // console.log(response);
+          if (response == 'loggedin') {
+            //console.log(response);
+            window.location = "home.php";
+          } else {
+            $('#loginAlert').html(response);
+          }
+
         }
-  
-      }
-    });
-  }
+      });
+    }
 
 
-});
+  });
 
+  // forgot password ajax request
+
+  $('#forgot-btn').click(function (e) {
+    if($("#forgot-form")[0].checkValidity(e)){
+      e.preventDefault();
+      $('#forgot-btn').val('Please wait...');
+
+      $.ajax({
+        type: "post",
+        url: "assets/php/action.php",
+        data: $('#forgot-form').serialize() + "&action=forgot",
+
+        success: function (response) {
+          
+
+          if (response == 'sent') {
+            $('#forgot-btn').val('Send');
+            $('#forgotAlert').html(response);
+
+          }else{
+            $('#forgot-btn').val('Reset Password');
+            $('#forgotAlert').html(response);
+          }
+        }
+      })
+    }
+
+  });
 
 
 

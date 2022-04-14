@@ -1,7 +1,11 @@
 <?php
 
 class Database
-{
+{   
+    const USERNAME = 'mizhazulhasan@gmail.com';
+    const PASSWORD = '01917926548';
+
+    
     private $dns = 'mysql:host=localhost;dbname=php_user_management';
     private $username = 'root';
     private $password = '';

@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css" />
     <!-- Fontawesome CSS CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" />
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
   </head>
   <body class="bg-info">
     <div class="container">
@@ -136,7 +136,9 @@
               <hr class="my-3" />
               <p class="lead text-center text-secondary">To reset your password, enter the registered e-mail adddress and we will send you password reset instructions on your e-mail!</p>
               <form action="#" method="post" class="px-3" id="forgot-form">
-                <div id="forgotAlert"></div>
+                <div id="forgotAlert">
+                  
+                </div>
                 <div class="input-group input-group-lg form-group">
                   <div class="input-group-prepend">
                     <span class="input-group-text rounded-0"><i class="far fa-envelope fa-lg"></i></span>
@@ -160,6 +162,6 @@
     </div>
     <!-- jQuery CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="js/script.js"></script>
+    <script src="assets/js/script.js"></script>
   </body>
 </html>

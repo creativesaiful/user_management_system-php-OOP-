@@ -5,6 +5,8 @@ require_once ('config.php');
 
 class Auth extends Database{
 
+    
+
     // Register New User 
 
     public function register($name, $email, $password){
@@ -44,5 +46,14 @@ class Auth extends Database{
         $stmt->execute(['email' => $email]);
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         return $row;
+    }
+
+    //Token Generate
+
+    public function token_store($email, $token){
+        $sql = "UPDATE users SET token = :token , token_expire = DATE_ADD(NOW(), INTERVAL 10 MINUTE)  WHERE email = :email";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute(['token' => $token, 'email' => $email]);
+        return true;
     }
 }
